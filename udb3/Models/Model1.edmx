@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Database1ModelStoreContainer">
+          <EntitySet Name="Carreras" EntityType="Database1Model.Store.Carreras" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contactos" EntityType="Database1Model.Store.Contactos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Noticias" EntityType="Database1Model.Store.Noticias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoCarrera" EntityType="Database1Model.Store.TipoCarrera" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TipoContacto" EntityType="Database1Model.Store.TipoContacto" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Carreras_TipoCarrera" Association="Database1Model.Store.FK_Carreras_TipoCarrera">
+            <End Role="TipoCarrera" EntitySet="TipoCarrera" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contactos_TipoContacto" Association="Database1Model.Store.FK_Contactos_TipoContacto">
+            <End Role="TipoContacto" EntitySet="TipoContacto" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="TipoCarrera" Type="int" />
+        </EntityType>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="Asunto" Type="varchar" MaxLength="150" />
+          <Property Name="TipoContacto" Type="int" />
+        </EntityType>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TipoCarrera">
+          <Key>
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="IdCarrera" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoContacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Carreras_TipoCarrera">
+          <End Role="TipoCarrera" Type="Database1Model.Store.TipoCarrera" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Database1Model.Store.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCarrera">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="TipoCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contactos_TipoContacto">
+          <End Role="TipoContacto" Type="Database1Model.Store.TipoContacto" Multiplicity="0..1" />
+          <End Role="Contactos" Type="Database1Model.Store.Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContacto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="TipoContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database1Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carreras" EntityType="Database1Model.Carreras" />
+          <EntitySet Name="TipoCarrera" EntityType="Database1Model.TipoCarrera" />
+          <AssociationSet Name="FK_Carreras_TipoCarrera" Association="Database1Model.FK_Carreras_TipoCarrera">
+            <End Role="TipoCarrera" EntitySet="TipoCarrera" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <EntitySet Name="Contactos" EntityType="Database1Model.Contactos" />
+          <EntitySet Name="TipoContacto" EntityType="Database1Model.TipoContacto" />
+          <AssociationSet Name="FK_Contactos_TipoContacto" Association="Database1Model.FK_Contactos_TipoContacto">
+            <End Role="TipoContacto" EntitySet="TipoContacto" />
+            <End Role="Contactos" EntitySet="Contactos" />
+          </AssociationSet>
+          <EntitySet Name="Noticias" EntityType="Database1Model.Noticias" />
+        </EntityContainer>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="TipoCarrera" Type="Int32" />
+          <NavigationProperty Name="TipoCarrera1" Relationship="Database1Model.FK_Carreras_TipoCarrera" FromRole="Carreras" ToRole="TipoCarrera" />
+        </EntityType>
+        <EntityType Name="TipoCarrera">
+          <Key>
+            <PropertyRef Name="IdCarrera" />
+          </Key>
+          <Property Name="IdCarrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Carreras" Relationship="Database1Model.FK_Carreras_TipoCarrera" FromRole="TipoCarrera" ToRole="Carreras" />
+        </EntityType>
+        <Association Name="FK_Carreras_TipoCarrera">
+          <End Role="TipoCarrera" Type="Database1Model.TipoCarrera" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Database1Model.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCarrera">
+              <PropertyRef Name="IdCarrera" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="TipoCarrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Correo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Asunto" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TipoContacto" />
+          <NavigationProperty Name="TipoContacto1" Relationship="Database1Model.FK_Contactos_TipoContacto" FromRole="Contactos" ToRole="TipoContacto" />
+        </EntityType>
+        <EntityType Name="TipoContacto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Titulo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contactos" Relationship="Database1Model.FK_Contactos_TipoContacto" FromRole="TipoContacto" ToRole="Contactos" />
+        </EntityType>
+        <Association Name="FK_Contactos_TipoContacto">
+          <End Type="Database1Model.TipoContacto" Role="TipoContacto" Multiplicity="0..1" />
+          <End Type="Database1Model.Contactos" Role="Contactos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContacto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contactos">
+              <PropertyRef Name="TipoContacto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Noticias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Titulo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities">
+          <EntitySetMapping Name="Carreras"><EntityTypeMapping TypeName="Database1Model.Carreras"><MappingFragment StoreEntitySet="Carreras">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+            <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+            <ScalarProperty Name="TipoCarrera" ColumnName="TipoCarrera" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TipoCarrera"><EntityTypeMapping TypeName="Database1Model.TipoCarrera"><MappingFragment StoreEntitySet="TipoCarrera">
+            <ScalarProperty Name="IdCarrera" ColumnName="IdCarrera" />
+            <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+            <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Contactos">
+            <EntityTypeMapping TypeName="Database1Model.Contactos">
+              <MappingFragment StoreEntitySet="Contactos">
+                <ScalarProperty Name="TipoContacto" ColumnName="TipoContacto" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContacto">
+            <EntityTypeMapping TypeName="Database1Model.TipoContacto">
+              <MappingFragment StoreEntitySet="TipoContacto">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Noticias">
+            <EntityTypeMapping TypeName="Database1Model.Noticias">
+              <MappingFragment StoreEntitySet="Noticias">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="Database1Model.Carreras" Width="1.5" PointX="0.5" PointY="0.5" Height="1.7566536458333333" IsExpanded="true" />
+        <EntityTypeShape EntityType="Database1Model.TipoCarrera" Width="1.5" PointX="2.625" PointY="2.25" Height="1.592306315104167" IsExpanded="true" />
+        <AssociationConnector Association="Database1Model.FK_Carreras_TipoCarrera" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.375" PointY="2.25" />
+          <ConnectorPoint PointX="3.375" PointY="1.3749995" />
+          <ConnectorPoint PointX="2" PointY="1.3749995" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Database1Model.Contactos" Width="1.5" PointX="4.25" PointY="0.5" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="Database1Model.TipoContacto" Width="1.5" PointX="6.5" PointY="2.25" Height="1.5923063151041657" />
+        <AssociationConnector Association="Database1Model.FK_Contactos_TipoContacto" >
+          <ConnectorPoint PointX="6.5" PointY="3.1316541458333327" />
+          <ConnectorPoint PointX="5" PointY="3.1316541458333327" />
+          <ConnectorPoint PointX="5" PointY="2.4210009765624996" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Database1Model.Noticias" Width="1.5" PointX="8.375" PointY="0.625" Height="1.4279589843749996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

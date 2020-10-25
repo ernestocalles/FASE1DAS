@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="Carreras" EntityType="Database1Model.Store.Carreras" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contactos" EntityType="Database1Model.Store.Contactos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Noticias" EntityType="Database1Model.Store.Noticias" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoCarrera" EntityType="Database1Model.Store.TipoCarrera" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoContacto" EntityType="Database1Model.Store.TipoContacto" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Carreras_TipoCarrera" Association="Database1Model.Store.FK_Carreras_TipoCarrera">
+      <End Role="TipoCarrera" EntitySet="TipoCarrera" />
+      <End Role="Carreras" EntitySet="Carreras" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contactos_TipoContacto" Association="Database1Model.Store.FK_Contactos_TipoContacto">
+      <End Role="TipoContacto" EntitySet="TipoContacto" />
+      <End Role="Contactos" EntitySet="Contactos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Carreras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+    <Property Name="TipoCarrera" Type="int" />
+  </EntityType>
+  <EntityType Name="Contactos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="Correo" Type="varchar" MaxLength="50" />
+    <Property Name="Asunto" Type="varchar" MaxLength="150" />
+    <Property Name="TipoContacto" Type="int" />
+  </EntityType>
+  <EntityType Name="Noticias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="TipoCarrera">
+    <Key>
+      <PropertyRef Name="IdCarrera" />
+    </Key>
+    <Property Name="IdCarrera" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TipoContacto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="varchar" MaxLength="50" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Carreras_TipoCarrera">
+    <End Role="TipoCarrera" Type="Database1Model.Store.TipoCarrera" Multiplicity="0..1" />
+    <End Role="Carreras" Type="Database1Model.Store.Carreras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoCarrera">
+        <PropertyRef Name="IdCarrera" />
+      </Principal>
+      <Dependent Role="Carreras">
+        <PropertyRef Name="TipoCarrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contactos_TipoContacto">
+    <End Role="TipoContacto" Type="Database1Model.Store.TipoContacto" Multiplicity="0..1" />
+    <End Role="Contactos" Type="Database1Model.Store.Contactos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoContacto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contactos">
+        <PropertyRef Name="TipoContacto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

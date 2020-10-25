@@ -1,0 +1,41 @@
+﻿@model IEnumerable<udb3.Models.Contactos>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Listado de contactos</h2>
+
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Correo
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Asunto
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoContacto1.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asunto)
+        </td>
+    </tr>
+}
+
+</table>

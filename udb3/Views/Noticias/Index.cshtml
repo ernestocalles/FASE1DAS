@@ -1,0 +1,34 @@
+﻿@model IEnumerable<udb3.Models.Noticias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Noticias</h2>
+
+<br />
+<div>Estas son nuestrar noticias como institucion universitaria:</div>
+<br /><br />
+
+<table>
+    <tr>
+        <th>
+            Tema
+        </th>
+        <th>
+            Descripcion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+    </tr>
+}
+
+</table>

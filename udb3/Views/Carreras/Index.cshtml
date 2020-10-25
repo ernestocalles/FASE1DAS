@@ -1,0 +1,51 @@
+﻿@model IEnumerable<udb3.Models.Carreras>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Inicio</h2>
+<img src="../../Content/img2-p.jpg" />
+<br /><br />
+<div>
+La Universidad Don Bosco brinda una amplia oferta de carreras con enfoque especial para una sociedad que avanza; 
+muchas de ellas, únicas a nivel nacional y regional que garantizan una colocación laboral acorde a la formación.
+<br /><br />
+Ofrece carreras de grado con titulaciones de profesorado, técnico, licenciatura e ingeniería a través de las 
+cinco Facultades que la conforman y dos Departamentos académicos.
+</div>
+<br />
+<div>Esta son algunas de nuestras carreras:</div>
+<br /><br />
+<table>
+    <tr>
+        <th>
+            Listado
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+    </tr>
+}
+
+</table>
+<br /><br />
+<div>Video institucional:</div>
+<br /><br />
+<iframe src="../../video.htm" width="370" height="285" frameborder="0"></iframe>
+
+<table>
+<tr>
+<td>
+    <img src="../../Content/facebook.png" /></td>
+<td>
+    <img src="../../Content/twitter.png" /></td>
+<td>
+    <img src="../../Content/youtube.png" /></td>
+<td>
+    <img src="../../Content/instagram.png" /></td>
+</tr>
+</table>
